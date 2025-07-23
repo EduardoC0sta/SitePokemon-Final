@@ -1,0 +1,82 @@
+<h1 class="mb-4">Gerenciamento de Produtos</h1>
+
+<div class="row g-4">
+  
+  <!-- Coluna do Seletor -->
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header fw-bold">Selecionar Produto</div>
+      <div class="card-body">
+        <select class="form-select" (change)="onProdutoSelecionado($event)">
+          <option [value]="null" disabled selected>Escolha um produto...</option>
+          <option *ngFor="let produto of todosOsProdutos" [value]="produto.id">
+            {{ produto.nome }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coluna de Detalhes do Produto (sem alterações) -->
+  <div class="col-lg-8">
+    <div *ngIf="produtoSelecionado; else semProduto" class="card">
+      <div class="card-header fw-bold">Detalhes do Produto</div>
+      <div class="card-body">
+        <!-- Seção Principal -->
+        <div class="row align-items-center pb-3 mb-3 border-bottom">
+          <div class="col-md-3 text-center">
+            <img [src]="produtoSelecionado.imagem" [alt]="produtoSelecionado.nome" class="img-fluid rounded shadow-sm">
+          </div>
+          <div class="col-md-9">
+            <h4 class="mb-1">{{ produtoSelecionado.nome }}</h4>
+            <p class="fs-5 fw-bold text-primary mb-2">{{ produtoSelecionado.preco | currency:'BRL' }}</p>
+            <p class="text-muted">{{ produtoSelecionado.descricaoCurta }}</p>
+          </div>
+        </div>
+
+        <!-- Gerenciamento -->
+        <div class="row pb-3 mb-3 border-bottom">
+          <div class="col-md-4">
+            <strong>SKU:</strong> {{ produtoSelecionado.sku }}
+          </div>
+          <div class="col-md-4">
+            <strong>Estoque:</strong> {{ produtoSelecionado.estoque }} unidades
+          </div>
+          <div class="col-md-4">
+            <strong>Status:</strong>
+            <span class="badge" [ngClass]="produtoSelecionado.emEstoque ? 'bg-success' : 'bg-danger'">
+              {{ produtoSelecionado.emEstoque ? 'Em Estoque' : 'Fora de Estoque' }}
+            </span>
+          </div>
+        </div>
+
+        <!--  Descrição e Tags -->
+        <div class="pb-3 mb-3 border-bottom">
+          <h5>Descrição Completa</h5>
+          <p>{{ produtoSelecionado.descricaoLonga }}</p>
+          <h5>Tags</h5>
+          <div>
+            <span *ngFor="let tag of produtoSelecionado.tags" class="badge bg-secondary me-1">{{ tag }}</span>
+          </div>
+        </div>
+
+        <!-- Avaliações -->
+        <div>
+          <h5>Avaliações de Clientes ({{ produtoSelecionado.avaliacoes.length }})</h5>
+          <div *ngIf="produtoSelecionado.avaliacoes.length > 0; else semAvaliacoes">
+            <div *ngFor="let avaliacao of produtoSelecionado.avaliacoes" class="review-item">
+              <strong>{{ avaliacao.usuario }} (Nota: {{ avaliacao.nota }}/5):</strong>
+              <p class="fst-italic mb-0">"{{ avaliacao.comentario }}"</p>
+            </div>
+          </div>
+          <ng-template #semAvaliacoes>
+            <p class="text-muted">Este produto ainda não possui avaliações.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <ng-template #semProduto>
+      <div class="alert alert-info">Selecione um produto na lista para ver seus detalhes.</div>
+    </ng-template>
+  </div>
+</div>

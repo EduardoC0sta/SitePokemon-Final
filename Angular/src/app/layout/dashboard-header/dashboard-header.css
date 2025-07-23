@@ -1,0 +1,13 @@
+.sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-header { padding: 1.5rem; text-align: center; border-bottom: 1px solid #495057; }
+.sidebar-nav { flex-grow: 1; }
+.nav-link { color: #adb5bd; padding: 1rem 1.5rem; display: block; text-decoration: none; }
+.nav-link.active, .nav-link:hover { color: white; background-color: #495057; }
+.sidebar-footer { border-top: 1px solid #495057; }
+.logout-link { cursor: pointer; }

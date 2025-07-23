@@ -1,0 +1,80 @@
+<div class="container my-5">
+
+  <div class="row mb-4">
+    <div class="col-12"> </div>
+  </div>
+
+  <div class="row">
+    <!-- Coluna dos Filtros -->
+    <div class="col-lg-3">
+      <aside class="filter-sidebar">
+        <button class="filter-toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegion"
+          aria-expanded="true">
+          FILTRAR POR <i class="bi bi-chevron-up"></i>
+        </button>
+
+        <div class="collapse show" id="collapseRegion">
+          <div class="filter-group">
+            <hr>
+            <h5 class="filter-group-header"> REGIÃO </h5>
+
+            <!-- Tags de Filtros Selecionados -->
+            <div class="selected-filters-container mb-3">
+              <div *ngFor="let filtro of opcoesDeFiltro">
+                <div *ngIf="filtro.selecionado" class="filter-tag" (click)="removerFiltro(filtro)">
+                  {{ filtro.nome }} <span class="remove-tag">&times;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Checkboxes de Filtro -->
+            <div *ngFor="let opcao of opcoesDeFiltro" class="form-check">
+              <input class="form-check-input region-filter" type="checkbox" [id]="'filter' + opcao.nome"
+                [(ngModel)]="opcao.selecionado" (ngModelChange)="aplicarFiltrosEOrdenacao()">
+              <label class="form-check-label" [for]="'filter' + opcao.nome">{{ opcao.nome }}</label>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Coluna dos Produtos -->
+    <div class="col-lg-9">
+      <!-- Seção de Ordenação -->
+      <div class="d-flex justify-content-end align-items-center mb-3 sort-section">
+        <label for="sort-by" class="me-2">Selecionar por:</label>
+        <select class="form-select w-auto" id="sort-by" [(ngModel)]="ordenacaoAtual"
+          (ngModelChange)="aplicarFiltrosEOrdenacao()">
+          <option value="price-asc">Preço mais baixo</option>
+          <option value="price-desc">Preço mais alto</option>
+        </select>
+      </div>
+      <hr class="mb-4">
+
+      <div class="row product-grid">
+        <!-- Mensagem se nenhum produto for encontrado -->
+        <div *ngIf="produtosExibidos.length === 0" class="col-12 text-center">
+          <p>Nenhuma pelúcia encontrada com os filtros selecionados.</p>
+        </div>
+
+        <!-- Loop que cria um card para cada produto na lista 'produtosExibidos' -->
+        <div *ngFor="let produto of produtosExibidos" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4 product-item">
+          <a [routerLink]="['/produto', produto.id]" class="product-link">
+            <div class="card product-card h-100">
+              <span *ngIf="produto.precoAntigo" class="sale-badge">OFERTA</span>
+              <img [src]="produto.imagem" class="card-img-top" [alt]="produto.nome">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ produto.nome }}</h5>
+                <div class="price-wrapper">
+                  <del *ngIf="produto.precoAntigo" class="text-muted">{{ produto.precoAntigo | currency:'BRL' }}</del>
+                  <p class="product-price fw-bold">{{ produto.preco | currency:'BRL' }}</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

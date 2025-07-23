@@ -1,0 +1,102 @@
+.product-image {
+    border: 1px solid #e9ecef;
+    max-width: 100%;
+    height: auto;
+}
+
+.product-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.price-section .old-price {
+    text-decoration: line-through;
+    font-size: 1.2rem;
+}
+
+.price-section .current-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3B4CCA;
+}
+
+.status-section .badge {
+    font-size: 1rem;
+    padding: 0.5em 0.75em;
+}
+
+.product-description {
+    line-height: 1.6;
+}
+
+
+/* Responsividade */
+@media (max-width: 990.98px) {
+  .product-image {
+    max-width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* 768px */
+@media (max-width: 767.98px) {
+    .product-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .product-image {
+        margin-bottom: 2rem;
+        max-width: 200px;
+    }
+
+    .col-lg-7 {
+        text-align: center;
+    }
+
+    .tags-section,
+    .status-section,
+    .price-section {
+        justify-content: center;
+    }
+}
+
+/* 576px */
+@media (max-width: 575.98px) {
+    .product-title {
+        font-size: 1.75rem;
+    }
+
+    .price-section .current-price {
+        font-size: 1.75rem;
+    }
+
+    .container.my-5 {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .product-image {
+        max-width: 150px;
+    }
+}
+
+/* 400px */
+@media (max-width: 400px) {
+    .product-title {
+        font-size: 1.5rem;
+    }
+
+    .price-section .current-price {
+        font-size: 1.5rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+    }
+
+    .product-image {
+        max-width: 125px;
+    }
+}

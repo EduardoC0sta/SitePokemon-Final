@@ -1,0 +1,94 @@
+<header class="sticky-top">
+  <div class="header-top">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavContent" aria-controls="mobileNavContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <a class="navbar-brand" routerLink="/home">
+        <img src="img/logo-loja-pokemon.png" alt="Pokémon Shop Logo">
+      </a>
+
+      <nav class="main-nav-links d-none d-md-flex">
+        <a class="nav-link" routerLink="/home">Home</a>
+        <a class="nav-link" routerLink="/pelucia">Pelúcias</a>
+        <a class="nav-link" routerLink="/tcg">Cartas TCG</a>
+      </nav>
+
+      <div class="user-actions d-none d-md-flex">
+        <div *ngIf="!(isLoggedIn$ | async)" class="dropdown">
+          <a class="user-action-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i>
+            <span>Login / Registrar</span>
+          </a>
+          <div class="dropdown-menu p-4 login-dropdown-menu" data-bs-auto-close="outside">
+            <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+              <div class="mb-3">
+                <label for="dropdownEmail" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="dropdownEmail" formControlName="email" [ngClass]="{ 'is-invalid': loginSubmitted && lf['email'].errors }">
+                <div *ngIf="loginSubmitted && lf['email'].errors" class="invalid-feedback d-block">
+                  <div *ngIf="lf['email'].errors['required']">Email é obrigatório.</div>
+                  <div *ngIf="lf['email'].errors['email']">Email inválido.</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="dropdownPassword" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="dropdownPassword" formControlName="senha" [ngClass]="{ 'is-invalid': loginSubmitted && lf['senha'].errors }">
+                <div *ngIf="loginSubmitted && lf['senha'].errors" class="invalid-feedback d-block">
+                  <div *ngIf="lf['senha'].errors['required']">Senha é obrigatória.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Logar</button>
+            </form>
+            <hr class="dropdown-divider">
+            <p style="text-align: center;"> Não possui uma conta? </p>
+            <a class="btn btn-secondary w-100" routerLink="/cadastro">Cadastrar</a>
+          </div>
+        </div>
+        <div *ngIf="isLoggedIn$ | async" class="dropdown">
+          <a class="user-action-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill"></i>
+            <span>Olá, {{ usuario?.nome }} <span *ngIf="usuario?.role === 'admin'">(Admin)</span></span>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/perfil">Minha Conta</a>
+            <a *ngIf="usuario?.role === 'admin'" class="dropdown-item" routerLink="/dashboard">Dashboard</a>
+            <hr class="dropdown-divider">
+            <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Sair</a>
+          </div>
+        </div>
+        <a routerLink="/carrinho" class="user-action-link">
+          <i class="bi bi-cart3"></i>
+          <span>Carrinho</span>
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="mobileNavContent">
+        <div class="mobile-nav-header">
+            <div *ngIf="!(isLoggedIn$ | async)">
+                <a class="user-action-link" routerLink="/cadastro">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Login / Registrar</span>
+                </a>
+            </div>
+            <div *ngIf="isLoggedIn$ | async">
+                <a class="user-action-link" routerLink="/perfil">
+                    <i class="bi bi-person-fill"></i>
+                    <span>Olá, {{ usuario?.nome }}</span>
+                </a>
+            </div>
+            <button type="button" class="btn-close" data-bs-toggle="collapse" data-bs-target="#mobileNavContent" aria-label="Close"></button>
+        </div>
+        <hr>
+        <div class="mobile-nav-links">
+            <a class="nav-link" routerLink="/home">Home</a>
+            <a class="nav-link" routerLink="/pelucia">Pelúcias</a>
+            <a class="nav-link" routerLink="/tcg">Cartas TCG</a>
+            <a class="nav-link" routerLink="/carrinho">Carrinho</a>
+             <a *ngIf="isLoggedIn$ | async" class="nav-link" (click)="logout()" style="cursor: pointer;">Sair</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

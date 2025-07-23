@@ -1,0 +1,97 @@
+<main class="container my-5 flex-grow-1">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4 fw-bold">Carrinho de Compras</h1>
+                <hr class="mb-4">
+            </div>
+        </div>
+
+        <div id="cart-filled-state" class="row g-4">
+
+            <div class="col-lg-8">
+                <div id="cart-items-container">
+                    
+                    <!-- Conteudo do Carrinho -->
+                    <div class="cart-item" data-item-id="P001">
+                        <div class="row align-items-center">
+                            <div class="col-3 col-md-2">
+                                <img src="img/wopper-plush.jpg" alt="Pelúcia Wooper" class="img-fluid rounded" data-product-image>
+                            </div>
+                            <div class="col-9 col-md-10">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="cart-item-title mb-1" data-product-name>Pelúcia Wooper</h5>
+                                        <p class="cart-item-price text-muted mb-2" data-unit-price>R$200,00</p>
+                                        <div class="input-group quantity-selector">
+                                            <button class="btn btn-outline-secondary btn-sm" type="button" data-action="decrease">-</button>
+                                            <input type="text" class="form-control form-control-sm text-center" value="1" aria-label="Quantidade" data-quantity-input>
+                                            <button class="btn btn-outline-secondary btn-sm" type="button" data-action="increase">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <p class="cart-item-subtotal fw-bold" data-subtotal>R$200,00</p>
+                                        <button class="btn btn-sm text-danger" data-action="remove"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-item" data-item-id="P002">
+                        <div class="row align-items-center">
+                            <div class="col-3 col-md-2">
+                                <img src="img/pikachu-plush.jpg" alt="Pelúcia Pikachu" class="img-fluid rounded" data-product-image>
+                            </div>
+                            <div class="col-9 col-md-10">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="cart-item-title mb-1" data-product-name>Pelúcia Pikachu Clássico</h5>
+                                        <p class="cart-item-price text-muted mb-2" data-unit-price>R$270,00</p>
+                                        <div class="input-group quantity-selector">
+                                            <button class="btn btn-outline-secondary btn-sm" type="button" data-action="decrease">-</button>
+                                            <input type="text" class="form-control form-control-sm text-center" value="1" aria-label="Quantidade" data-quantity-input>
+                                            <button class="btn btn-outline-secondary btn-sm" type="button" data-action="increase">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <p class="cart-item-subtotal fw-bold" data-subtotal>R$270,00</p>
+                                        <button class="btn btn-sm text-danger" data-action="remove"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conteudo carrinho venda -->
+            <div class="col-lg-4">
+                <div class="order-summary-box">
+                    <h4 class="fw-bold">Resumo do Pedido</h4>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal (<span id="total-items">2</span> itens)</span>
+                        <span class="fw-medium" id="subtotal-value">R$470,00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold fs-5 mt-2">
+                        <span>Total</span>
+                        <span id="total-value">R$470,00</span>
+                    </div>
+                    
+                    <h5 class="mt-4 mb-3 fw-bold">Finalizar Compra</h5>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-payment" type="button">
+                            <i class="bi bi-upc-scan"></i> <span>Pagar com Boleto</span>
+                        </button>
+                        <button class="btn btn-payment" type="button">
+                            <i class="bi bi-qr-code"></i> <span>Pagar com Pix</span>
+                        </button>
+                        <button class="btn btn-payment-main" type="button">
+                            <i class="bi bi-credit-card"></i> <span>Pagar com Cartão</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    

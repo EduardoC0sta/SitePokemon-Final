@@ -1,0 +1,51 @@
+<div class="container my-5">
+  <!-- Indicador de Carregamento -->
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Carregando...</span>
+    </div>
+  </div>
+
+  <!-- Mensagem de Erro -->
+  <div *ngIf="error" class="alert alert-danger">
+    Ocorreu um erro ao carregar o produto. Por favor, tente novamente mais tarde.
+  </div>
+
+  <!-- Conteúdo do Produto-->
+  <div *ngIf="!loading && !error && produto" class="row g-5">
+    <!-- Coluna da Imagem -->
+    <div class="col-lg-5 text-center">
+      <img [src]="produto.imagem" [alt]="produto.nome" class="img-fluid rounded shadow-sm product-image">
+    </div>
+
+    <!-- Coluna de Detalhes -->
+    <div class="col-lg-7">
+      <h1 class="product-title">{{ produto.nome }}</h1>
+
+      <div class="price-section my-3">
+        <span *ngIf="produto.precoAntigo" class="old-price text-muted me-2">{{ produto.precoAntigo | currency:'BRL' }}</span>
+        <span class="current-price">{{ produto.preco | currency:'BRL' }}</span>
+      </div>
+
+      <div class="status-section mb-4">
+        <span class="badge" [ngClass]="produto.emEstoque ? 'bg-success' : 'bg-danger'">
+          {{ produto.emEstoque ? 'Disponível' : 'Indisponível' }}
+        </span>
+      </div>
+
+      <p class="product-description">{{ produto.descricaoLonga }}</p>
+
+      <div class="tags-section my-4">
+        <strong>Tags:</strong>
+        <span *ngFor="let tag of produto.tags" class="badge bg-light text-dark me-1">{{ tag }}</span>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary btn-lg" [disabled]="!produto.emEstoque">
+          <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+e

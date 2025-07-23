@@ -1,0 +1,77 @@
+<div class="container my-5">
+  <div class="row align-items-center justify-content-center g-5">
+    <!-- Coluna da Imagem -->
+    <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+      <img src="img/pikachu-tela-cadastro.png" class="img-fluid rounded-3"
+        alt="Pikachu te dando boas-vindas à Loja Pokémon">
+    </div>
+
+    <!-- Coluna do Formulário -->
+    <div class="col-lg-6">
+      <div class="form-container">
+        <h2 class="text-center fw-bold mb-4">Crie sua Conta</h2>
+        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+          
+          <!-- Campos de Nome, Email, Senha e Confirmar Senha (sem alterações) -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nome" placeholder="Seu Nome Completo" formControlName="nome"
+              [ngClass]="{ 'is-invalid': submitted && f['nome'].errors }">
+            <label for="nome">Nome Completo</label>
+            <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+              <div *ngIf="f['nome'].errors['required']">Nome completo é obrigatório.</div>
+              <div *ngIf="f['nome'].errors['nomeIncompleto']">Por favor, insira seu nome e sobrenome.</div>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="nome@exemplo.com" formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+            <label for="email">Endereço de Email</label>
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+              <div *ngIf="f['email'].errors['required']">Email é obrigatório.</div>
+              <div *ngIf="f['email'].errors['email']">Por favor, insira um email válido.</div>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="senha" placeholder="Senha" formControlName="senha"
+              [ngClass]="{ 'is-invalid': submitted && f['senha'].errors }">
+            <label for="senha">Senha</label>
+            <div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
+              <div *ngIf="f['senha'].errors['required']">Senha é obrigatória.</div>
+              <div *ngIf="f['senha'].errors['minlength']">A senha deve ter no mínimo 6 caracteres.</div>
+              <div *ngIf="f['senha'].errors['pattern']">A senha deve conter pelo menos um caractere especial.</div>
+            </div>
+          </div>
+          <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="confirmarSenha" placeholder="Confirmar Senha"
+              formControlName="confirmarSenha"
+              [ngClass]="{ 'is-invalid': submitted && (f['confirmarSenha'].errors || cadastroForm.errors?.['senhasNaoCoincidem']) }">
+            <label for="confirmarSenha">Confirmar Senha</label>
+            <div *ngIf="submitted && (f['confirmarSenha'].errors || cadastroForm.errors?.['senhasNaoCoincidem'])"
+              class="invalid-feedback">
+              <div *ngIf="f['confirmarSenha'].errors?.['required']">A confirmação de senha é obrigatória.</div>
+              <div *ngIf="cadastroForm.errors?.['senhasNaoCoincidem']">As senhas não coincidem.</div>
+            </div>
+          </div>
+
+          <!-- 2. Checkbox LGPD -->
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="aceiteLgpd" formControlName="aceiteLgpd"
+              [ngClass]="{ 'is-invalid': submitted && f['aceiteLgpd'].errors }">
+            <label class="form-check-label" for="aceiteLgpd">
+              Eu li e concordo com os <a href="https://www.pokemoncenter.com/terms-of-use" target="_blank">Termos de
+                Uso</a> e a <a href="https://www.pokemon.com/us/legal/privacy-notice" target="_blank">Política de
+                Privacidade</a>.
+            </label>
+            <div *ngIf="submitted && f['aceiteLgpd'].errors" class="invalid-feedback">
+              Você deve aceitar os termos para continuar.
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button class="btn btn-cadastro" type="submit" [disabled]="cadastroForm.invalid">Criar Conta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
