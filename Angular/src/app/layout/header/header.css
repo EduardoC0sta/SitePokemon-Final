@@ -8,15 +8,16 @@ header {
 /* --- Header Superior (única barra) --- */
 .header-top .container-fluid {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaça o logo, nav (invisível para flex) e user actions */
     align-items: center;
     padding: 0.5rem 1.5rem;
     min-height: 80px;
-    position: relative;
+    position: relative; /* Essencial para o posicionamento absoluto da nav */
 }
 
 .navbar-brand {
-    flex-shrink: 0;
+    flex-shrink: 0; /* Impede que o logo encolha */
+    z-index: 2; /* Garante que o logo fique acima da nav centralizada se houver sobreposição mínima */
 }
 
 .navbar-brand img {
@@ -27,10 +28,11 @@ header {
 .main-nav-links {
     display: flex;
     gap: 1rem;
-    position: absolute;
+    position: absolute; /* Mantém o posicionamento absoluto para centralização */
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 50%; /* Centraliza verticalmente também */
+    transform: translate(-50%, -50%); /* Ajusta para centralizar com base no próprio tamanho */
+    z-index: 1; /* Garante que fique abaixo do logo e user-actions se houver sobreposição */
 }
 
 .main-nav-links .nav-link {
@@ -53,7 +55,8 @@ header {
     align-items: center;
     justify-content: flex-end;
     gap: 1.5rem;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Impede que as ações encolham */
+    z-index: 2; /* Garante que as ações fiquem acima da nav centralizada */
 }
 
 .user-action-link {
@@ -111,10 +114,49 @@ header {
 
 
 /* Responsividade */
+
+/* Para telas entre 940px e 781px */
+@media (max-width: 940px) {
+    /* Diminui o espaçamento e padding dos links para evitar sobreposição mais cedo */
+    .main-nav-links {
+        gap: 0.5rem;
+    }
+    .main-nav-links .nav-link {
+        padding: 0.75rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Reduz o gap e tamanho de fonte/ícone das ações do usuário */
+    .user-actions {
+        gap: 0.8rem;
+    }
+    .user-action-link {
+        font-size: 0.8rem;
+    }
+    .user-action-link i {
+        font-size: 1.3rem;
+    }
+
+    /* Ajusta o padding do container-fluid para evitar sobreposição
+       O ideal é ter um padding lateral que garanta que o logo e user-actions
+       nunca se encostem na navegação centralizada */
+    .header-top .container-fluid {
+        padding: 0.5rem 1rem; /* Pode precisar ajustar este valor */
+    }
+}
+
+/* Para telas menores ou iguais a 780px (mobile) */
 @media (max-width: 780px) {
     .header-top .container-fluid {
-        justify-content: center;
-        position: relative;
+        justify-content: center; /* Centraliza o logo quando a nav principal está oculta */
+        position: relative; /* Mantém relative para o toggler */
+        padding: 0.5rem 1.5rem; /* Reseta o padding se necessário */
+    }
+
+    /* Esconde a navegação principal e ações do usuário no mobile */
+    .main-nav-links,
+    .user-actions {
+        display: none; /* Esconde os elementos desktop */
     }
 
     .navbar-toggler {

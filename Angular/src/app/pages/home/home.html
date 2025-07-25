@@ -1,92 +1,105 @@
 <div class="container">
-<div class="container my-5">
-    <h2 class="fw-bold text-center mb-4">Ofertas da Semana</h2>
+    <div class="container my-5">
+        <h2 class="fw-bold text-center mb-4">Ofertas da Semana</h2>
 
-    <!-- A seção do carrossel -->
-    <section class="carousel-section">
-        <div id="ofertasCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-            <div class="carousel-inner">
-                <div *ngFor="let oferta of ofertas; let i = index" class="carousel-item" [class.active]="i === 0"
-                     [style.background-image]="'url(' + oferta.imagem + ')'">
+        <!-- A seção do carrossel -->
+        <div class="container-fluid p-0">
 
-                    <div class="carousel-caption">
-                        <h5 class="display-4 fw-bolder">{{ oferta.titulo }}</h5>
-                        <a [routerLink]="oferta.link" class="btn btn-pokeball-red">Quero Comprar!</a>
-                    </div>
-                </div>
+            <div class="preload-images">
+                <img *ngFor="let oferta of ofertas" [src]="oferta.imagem" alt="Preloading image">
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#ofertasCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#ofertasCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Próximo</span>
-            </button>
-        </div>
-    </section>
-</div>
+            <section class="carousel-section">
+                <div id="ofertasCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        <div *ngFor="let oferta of ofertas; let i = index" class="carousel-item"
+                            [class.active]="i === 0" [style.background-image]="'url(' + oferta.imagem + ')'">
 
-<!-- Card que indica as 2 paginas de produtos -->
-<div class="container">
-    <section class="text-center my-5">
-        <h2 class="fw-bold mb-3"> Nossos Produtos </h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img src="img/pikachu-plush-kimono.jpg" class="card-img-top" alt="Categoria de Pelúcias Pokémon">
-                    <div class="card-body">
-                        <h5 class="card-title"> Nossas Pelúcias </h5>
-                        <p class="card-text"> Colecione os companheiros mais fofos e de alta qualidade de todas as gerações de Pokémon. </p>
+                            <div class="carousel-caption">
+                                <h5 class="display-4 fw-bolder">{{ oferta.titulo }}</h5>
+                                <a [routerLink]="oferta.link" class="btn btn-pokeball-red">Quero Comprar!</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="/pelucia" class="btn btn-pokeball-red">Ver Pelúcias</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img src="img/miraidon-deck-tcg.jpg" class="card-img-top" alt="Categoria de Pokémon TCG">
-                    <div class="card-body">
-                        <h5 class="card-title"> Pokémon TCG </h5>
-                        <p class="card-text"> Monte seu deck e se torne um mestre com nossas coleções de cartas e boosters. </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/tcg" class="btn btn-pokeball-red"> Ver Cartas </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
 
-<!-- Depoimentos -->
-<section class="testimonials-section">
-    <div class="container">
-        <h2 class="fw-bold text-center mb-4"> O que nossos clientes dizem </h2>
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="testimonial-card">
-                    <img src="https://i.pravatar.cc/150?img=1" alt="Cliente 1">
-                    <p class="fst-italic">"A pelúcia do Wooper chegou super rápido de qualidade incrível! Exatamente como na foto. Comprarei novamente!"</p>
-                    <div class="customer-name">- Ash K.</div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#ofertasCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#ofertasCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
                 </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="testimonial-card">
-                    <img src="https://i.pravatar.cc/150?img=5" alt="Cliente 2">
-                    <p class="fst-italic">"Melhor loja para comprar boosters de TCG! Atendimento nota 10 e entrega no prazo."</p>
-                    <div class="customer-name">- Misty A.</div>
+
+                <!-- Card que indica as 2 paginas de produtos -->
+                <div class="container">
+                    <section class="text-center my-5">
+                        <h2 class="fw-bold mb-3"> Nossos Produtos </h2>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <img src="img/pikachu-plush-kimono.jpg" class="card-img-top"
+                                        alt="Categoria de Pelúcias Pokémon">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Nossas Pelúcias </h5>
+                                        <p class="card-text"> Colecione os companheiros mais fofos e de alta qualidade
+                                            de todas as gerações de Pokémon. </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="/pelucia" class="btn btn-pokeball-red">Ver Pelúcias</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <img src="img/miraidon-deck-tcg.jpg" class="card-img-top"
+                                        alt="Categoria de Pokémon TCG">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> Pokémon TCG </h5>
+                                        <p class="card-text"> Monte seu deck e se torne um mestre com nossas coleções de
+                                            cartas e boosters. </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="/tcg" class="btn btn-pokeball-red"> Ver Cartas </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="testimonial-card">
-                    <img src="https://i.pravatar.cc/150?img=7" alt="Cliente 3">
-                    <p class="fst-italic">"O site é muito fácil de navegar e os preços são ótimos. Meu deck de batalha chegou perfeito!"</p>
-                    <div class="customer-name">- Brock H.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+                <!-- Depoimentos -->
+                <section class="testimonials-section">
+                    <div class="container">
+                        <h2 class="fw-bold text-center mb-4"> O que nossos clientes dizem </h2>
+                        <div class="row">
+                            <div class="col-lg-4 mb-4">
+                                <div class="testimonial-card">
+                                    <img src="https://i.pravatar.cc/150?img=1" alt="Cliente 1">
+                                    <p class="fst-italic">"A pelúcia do Wooper chegou super rápido de qualidade
+                                        incrível! Exatamente como na foto. Comprarei novamente!"</p>
+                                    <div class="customer-name">- Ash K.</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <div class="testimonial-card">
+                                    <img src="https://i.pravatar.cc/150?img=5" alt="Cliente 2">
+                                    <p class="fst-italic">"Melhor loja para comprar boosters de TCG! Atendimento nota 10
+                                        e entrega no prazo."</p>
+                                    <div class="customer-name">- Misty A.</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <div class="testimonial-card">
+                                    <img src="https://i.pravatar.cc/150?img=7" alt="Cliente 3">
+                                    <p class="fst-italic">"O site é muito fácil de navegar e os preços são ótimos. Meu
+                                        deck de batalha chegou perfeito!"</p>
+                                    <div class="customer-name">- Brock H.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>

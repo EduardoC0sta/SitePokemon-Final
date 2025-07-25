@@ -37,9 +37,8 @@ export class Cadastro implements OnInit {
     this.cadastroForm = this.fb.group({
       nome: ['', [Validators.required, nomeCompletoValidator]],
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [ Validators.required, Validators.minLength(6), Validators.pattern('^.*[!@#$%^&*(),.?":{}|<>].*$') ]],
+      senha: ['', [ Validators.required, Validators.minLength(6), Validators.pattern('^.[!@#$%^&(),.?":{}|<>].*$') ]],
       confirmarSenha: ['', Validators.required],
-      // 1. ADICIONE O NOVO CAMPO DE CONTROLE AQUI
       aceiteLgpd: [false, Validators.requiredTrue]
     }, { validators: senhasIguaisValidator });
   }
@@ -50,6 +49,7 @@ export class Cadastro implements OnInit {
     this.submitted = true;
     if (this.cadastroForm.invalid) {
       console.log("Formulário inválido:", this.cadastroForm.errors);
+      // Aqui o retorno impede a chamada da API, mas permite que as mensagens de erro apareçam.
       return;
     }
 

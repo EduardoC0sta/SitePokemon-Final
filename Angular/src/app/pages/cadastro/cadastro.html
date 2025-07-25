@@ -1,18 +1,15 @@
 <div class="container my-5">
   <div class="row align-items-center justify-content-center g-5">
-    <!-- Coluna da Imagem -->
     <div class="col-lg-6 d-none d-lg-flex justify-content-center">
       <img src="img/pikachu-tela-cadastro.png" class="img-fluid rounded-3"
         alt="Pikachu te dando boas-vindas à Loja Pokémon">
     </div>
 
-    <!-- Coluna do Formulário -->
     <div class="col-lg-6">
       <div class="form-container">
         <h2 class="text-center fw-bold mb-4">Crie sua Conta</h2>
         <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
           
-          <!-- Campos de Nome, Email, Senha e Confirmar Senha (sem alterações) -->
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="nome" placeholder="Seu Nome Completo" formControlName="nome"
               [ngClass]="{ 'is-invalid': submitted && f['nome'].errors }">
@@ -53,7 +50,6 @@
             </div>
           </div>
 
-          <!-- 2. Checkbox LGPD -->
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" id="aceiteLgpd" formControlName="aceiteLgpd"
               [ngClass]="{ 'is-invalid': submitted && f['aceiteLgpd'].errors }">
@@ -68,7 +64,7 @@
           </div>
 
           <div class="d-grid">
-            <button class="btn btn-cadastro" type="submit" [disabled]="cadastroForm.invalid">Criar Conta</button>
+            <button class="btn btn-cadastro" type="submit">Criar Conta</button>
           </div>
         </form>
       </div>
